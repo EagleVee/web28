@@ -1,0 +1,12 @@
+#contacts {
+  align-self: flex-end;
+}
+
+#contacts-content {
+  flex-direction: row;
+}
+
+.header {
+  align-items: center;
+  justify-content: center;
+}
