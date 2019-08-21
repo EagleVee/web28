@@ -1,12 +1,49 @@
-#contacts {
-  align-self: flex-end;
+.contacts {
+  justify-content: center;
 }
-
-#contacts-content {
-  flex-direction: row;
-}
-
-.header {
+.contacts-content {
+  display: flex;
   align-items: center;
+  justify-content: center;
+}
+#contact-facebook {
+  margin-left: 5;
+  margin-right: 5;
+  font-family: 'Muli', 'Times New Roman', Times, serif;
+  align-items: center;
+}
+#headline {
+  font-family: 'Muli', 'Times New Roman', Times, serif;
+  font-size: 30px;
+}
+#picture-cat {
+  object-fit: cover;
+  width: 500px;
+  max-height: 500px;
+}
+p {
+  text-align: center;
+  font-family: 'Muli', 'Times New Roman', Times, serif;
+} 
+h3 {
+  justify-content: center;
+}
+h2 {
+  justify-content: center;
+}
+.body {
+  justify-content: center;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.main {
+  justify-content: center;
+}
+.footer {
+  width: 100%;
+  display: flex;
   justify-content: center;
 }
