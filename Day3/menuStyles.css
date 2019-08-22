@@ -1,0 +1,32 @@
+#horizontalMenu {
+  display: flex;
+  justify-content: center;
+  background-color: #D5B0AC;
+}
+#verticalMenu {
+  margin-top: 30px;
+  display: inline-block;
+  justify-content: center;
+}
+span {
+  margin-top: 1px;
+  width: 100px;
+  height: 30px;
+  background-color: #D5B0AC;
+  color: #402E2A;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+span:hover {
+  margin-top: 2px;
+  width: 100px;
+  height: 30px;
+  background-color: #9CD08F;
+  color: #FFFFFF;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
