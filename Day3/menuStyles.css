@@ -1,9 +1,9 @@
-#horizontalMenu {
+.menuHorizontal {
   display: flex;
   justify-content: center;
   background-color: #D5B0AC;
 }
-#verticalMenu {
+.menuVertical {
   margin-top: 30px;
   display: inline-block;
   justify-content: center;
