@@ -20,6 +20,7 @@ span {
   justify-content: center;
 }
 span:hover {
+  cursor: pointer;
   margin-top: 2px;
   width: 100px;
   height: 30px;
