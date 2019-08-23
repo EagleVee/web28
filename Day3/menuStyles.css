@@ -48,5 +48,5 @@ span:hover {
   justify-content: center;
 }
 .drop-down:hover .drop-menu { display: block; }
-.secondary-drop-down:hover .secondary-drop-menu { display: block }
+.secondary-drop-down:hover .secondary-drop-menu { display: block; }
 
