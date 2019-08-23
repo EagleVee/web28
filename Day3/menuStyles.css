@@ -1,7 +1,6 @@
 .menu {
   display: flex;
   justify-content: center;
-  background-color: #D5B0AC;
   position: static;
 }
 .drop-down {
