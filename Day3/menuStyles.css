@@ -1,15 +1,33 @@
-.menuHorizontal {
+.menu {
   display: flex;
   justify-content: center;
   background-color: #D5B0AC;
+  position: static;
 }
-.menuVertical {
-  margin-top: 30px;
-  display: inline-block;
+.drop-down {
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
+.drop-menu {
+  position: absolute;
+  top: 30px;
+  display: none;
+  justify-content: center;
+}
+.secondary-drop-down {
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
+.secondary-drop-menu {
+  position: absolute;
+  left: 100px;
+  top: 0px;
+  display: none;
   justify-content: center;
 }
 span {
-  margin-top: 1px;
   width: 100px;
   height: 30px;
   background-color: #D5B0AC;
@@ -21,7 +39,6 @@ span {
 }
 span:hover {
   cursor: pointer;
-  margin-top: 2px;
   width: 100px;
   height: 30px;
   background-color: #9CD08F;
@@ -31,3 +48,6 @@ span:hover {
   align-items: center;
   justify-content: center;
 }
+.drop-down:hover .drop-menu { display: block; }
+.secondary-drop-down:hover .secondary-drop-menu { display: block }
+
