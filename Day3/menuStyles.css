@@ -3,30 +3,25 @@
   justify-content: center;
   position: static;
 }
-.drop-down {
+.menu span {
   display: flex;
   position: relative;
   justify-content: center;
 }
-.drop-menu {
+.menu nav {
   position: absolute;
   top: 30px;
   display: none;
   justify-content: center;
 }
-.secondary-drop-down {
-  display: flex;
-  position: relative;
-  justify-content: center;
-}
-.secondary-drop-menu {
+.menu nav nav {
   position: absolute;
   left: 100px;
   top: 0px;
   display: none;
   justify-content: center;
 }
-span {
+.menu span {
   width: 100px;
   height: 30px;
   background-color: #D5B0AC;
@@ -36,17 +31,10 @@ span {
   align-items: center;
   justify-content: center;
 }
-span:hover {
+.menu span:hover {
   cursor: pointer;
-  width: 100px;
-  height: 30px;
   background-color: #9CD08F;
   color: #FFFFFF;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
-.drop-down:hover .drop-menu { display: block; }
-.secondary-drop-down:hover .secondary-drop-menu { display: block; }
+.menu span:hover > nav { display: block; }
 

@@ -14,9 +14,9 @@ const renderMenu = () => {
       }
       dropMenu +=
         `
-        <span class="secondary-drop-down">
+        <span>
           Item ${i}.${j}
-          <nav class="secondary-drop-menu">
+          <nav>
             ${secondaryDropMenu}
           </nav>
         </span>
@@ -24,9 +24,9 @@ const renderMenu = () => {
     }
     dropDown +=
       `
-      <span class="drop-down">
+      <span>
         Item ${i}
-        <nav class="drop-menu">
+        <nav>
           ${dropMenu}
         </nav>
       </span>
