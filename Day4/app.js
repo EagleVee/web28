@@ -8,13 +8,14 @@ if (argv && argv.length >= 2) {
       throw error;
     } else {
       var objectData = convertToObject(data.toString());
-      writeToOutput(fileOutput, objectData)
+      var outputContent = objectToString(objectData); 
+      writeToOutput(fileOutput, outputContent);
     }
   })
 } else {
   console.log('ERROR');
 }
-function convertToObject (data) {
+function convertToObject(data) {
   var arrayData = data.split('\n');
   var objectData = {}
   arrayData.map(data => {
@@ -32,14 +33,17 @@ function convertToObject (data) {
   })
   return objectData;
 }
-function writeToOutput (fileOutput, objectData) {
-    var output = '';
-    for (var key in objectData) {
-      output = output + [key] + ' ' + objectData[key] + '\n';
-    }
-    var outputWriteStream = fs.createWriteStream(fileOutput);
-    outputWriteStream.write(output);
+function objectToString(object) {
+  var output = '';
+  for (var key in object) {
+    output = output + [key] + ' ' + object[key] + '\n';
+  }
+  return output;
 }
-function readFileAsync (fileName, callback) {
+function writeToOutput(fileOutput, content) {
+  var outputWriteStream = fs.createWriteStream(fileOutput);
+  outputWriteStream.write(content);
+}
+function readFileAsync(fileName, callback) {
   fs.readFile(fileName, callback);
 }
