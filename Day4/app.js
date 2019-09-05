@@ -7,7 +7,7 @@ if (argv && argv.length >= 2) {
     if (error) {
       throw error;
     } else {
-      var objectData = convertToObject(data.toString());
+      var objectData = convertDataToObject(data.toString());
       var outputContent = objectToString(objectData);
       writeToOutput(fileOutput, outputContent);
     }
@@ -15,7 +15,7 @@ if (argv && argv.length >= 2) {
 } else {
   console.log('ERROR');
 }
-function convertToObject(data) {
+function convertDataToObject(data) {
   var arrayData = data.split('\n');
   var objectData = {}
   arrayData.map(data => {
