@@ -8,7 +8,7 @@ if (argv && argv.length >= 2) {
       throw error;
     } else {
       var objectData = convertToObject(data.toString());
-      var outputContent = objectToString(objectData); 
+      var outputContent = objectToString(objectData);
       writeToOutput(fileOutput, outputContent);
     }
   })
