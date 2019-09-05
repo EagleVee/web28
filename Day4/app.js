@@ -17,7 +17,7 @@ if (argv && argv.length >= 2) {
 }
 function convertDataToObject(data) {
   var arrayData = data.split('\n');
-  var objectData = {}
+  var objectData = {};
   arrayData.map(data => {
     var tempArray = data.split(' ');
     var key = tempArray[0];
