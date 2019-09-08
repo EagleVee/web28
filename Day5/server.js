@@ -5,10 +5,6 @@ const fs = require('fs');
 const Error = require('./error.js');
 const port = 3000;
 
-app.get('/hello', function (request, response) {
-  response.end(Error.MISSING_FIELD);
-})
-
 app.get('/api/user', function (request, response) {
   fs.readFile('./users.json', function (error, data) {
     if (error) throw error;
