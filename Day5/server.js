@@ -4,9 +4,10 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const Error = require('./error.js');
 const port = 3000;
+const usersData = './users.json';
 
 app.get('/api/user', function (request, response) {
-  fs.readFile('./users.json', function (error, data) {
+  fs.readFile(usersData, function (error, data) {
     if (error) throw error;
     else response.end(data);
   })
@@ -34,36 +35,36 @@ app.delete('/api/user', bodyParser.json(), function (request, response) {
   response.end('SUCCESS');
 })
 function addUserToJson(userObject) {
-  fs.readFile('./users.json', function (error, data) {
+  fs.readFile(usersData, function (error, data) {
     if (error) throw error;
     else {
       let objectData = JSON.parse(data.toString());
       const userIndex = getObjectLength(objectData) + 1;
       objectData[`user${userIndex}`] = userObject;
       jsonData = JSON.stringify(objectData, null, 4);
-      writeToOutput('./users.json', jsonData);
+      writeToOutput(usersData, jsonData);
     }
   })
 }
 function editUserInJson(userKey, userObject) {
-  fs.readFile('./users.json', function (error, data) {
+  fs.readFile(usersData, function (error, data) {
     if (error) throw error;
     else {
       let objectData = JSON.parse(data.toString());
       objectData[userKey] = userObject;
       jsonData = JSON.stringify(objectData, null, 4);
-      writeToOutput('./users.json', jsonData);
+      writeToOutput(usersData, jsonData);
     }
   })
 }
 function deteleUserInJson(user) {
-  fs.readFile('./users.json', function (error, data) {
+  fs.readFile(usersData, function (error, data) {
     if (error) throw error;
     else {
       let objectData = JSON.parse(data.toString());
       delete objectData[user];
       jsonData = JSON.stringify(objectData, null, 4);
-      writeToOutput('./users.json', jsonData);
+      writeToOutput(usersData, jsonData);
     }
   })
 }

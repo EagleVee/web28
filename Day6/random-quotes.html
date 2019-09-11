@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="http://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <link href="random-quotes.css" rel="stylesheet">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="content-container">
+      <h1 id="quote" class="text big opacity-1">Karma is a bitch</h1>
+      <h2 id="author" class="text small opacity-1">Random thot</h2>
+      <div class="button-container">
+        <button id="new" class="new">New Quote</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(document).ready(function () {
+      getQuote();
+    })
+    $("#new").click(function () {
+      getQuote();
+    })
+    function getQuote() {
+      hideText();
+      $.ajax({
+        url: "https://api.quotable.io/random",
+        type: "GET",
+        success: function (data) {
+          if (data) {
+            const { content, author } = data;
+            const contentWithSymbol = '"' + content + '"';
+            const authorWithSymbol = '- ' + author + ' -';
+            $("#quote").html(contentWithSymbol);
+            $("#author").html(authorWithSymbol);
+            showText();
+          }
+        },
+        error: function (error) {
+          $("#quote").html("Some errors happened");
+          $("#author").html("Unknown");
+          showText();
+        }
+      });
+    }
+    function hideText() {
+      $(".text").removeClass("opacity-1").addClass("opacity-0");
+    }
+    function showText() {
+      $(".text").removeClass("opacity-0").addClass("opacity-1");
+    }
+  </script>
+</body>
+
+</html>
