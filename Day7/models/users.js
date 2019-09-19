@@ -17,15 +17,14 @@ function addOne(user, callback) {
     callback(err, data);
   })
 }
-function updateOne(user, callback) {
-  const { id, name, password } = user;
+function updateOne(id, user, callback) {
+  const { name, password } = user;
   UserModel.updateOne({ id: id }, { $set: { name: name, password: password } })
     .exec(function (err, data) {
       callback(err, data);
     });
 }
-function deleteOne(user, callback) {
-  const { id } = user;
+function deleteOne(id, callback) {
   UserModel.deleteOne({ id: id }).exec(function (err, data) {
     callback(err, data);
   })

@@ -5,7 +5,11 @@ const products = [
   "322ec6f4-76cf-44aa-bdf1-df7fd7b71a2b",
   "422ec6f4-76cf-44aa-bdf1-df7fd7b71a2b",
   "522ec6f4-76cf-44aa-bdf1-df7fd7b71a2b",
-  "622ec6f4-76cf-44aa-bdf1-df7fd7b71a2b"
+  "622ec6f4-76cf-44aa-bdf1-df7fd7b71a2b",
+  "40692043-0611-4da6-8d46-255d3b33ca06",
+  "8e7dd732-97bc-4bca-be5c-453448cc0036",
+  "4d92f734-085d-41f2-ae4e-58d48e08b91d",
+  "e6cb56e2-2d89-49b4-b6d2-90edbff0eb72"
 ]
 
 const volumns = [

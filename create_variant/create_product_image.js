@@ -1,12 +1,24 @@
 const fs = require('fs');
-
+const products = [
+  "122ec6f4-76cf-44aa-bdf1-df7fd7b71a2b",
+  "222ec6f4-76cf-44aa-bdf1-df7fd7b71a2b",
+  "322ec6f4-76cf-44aa-bdf1-df7fd7b71a2b",
+  "422ec6f4-76cf-44aa-bdf1-df7fd7b71a2b",
+  "522ec6f4-76cf-44aa-bdf1-df7fd7b71a2b",
+  "622ec6f4-76cf-44aa-bdf1-df7fd7b71a2b",
+  "40692043-0611-4da6-8d46-255d3b33ca06",
+  "8e7dd732-97bc-4bca-be5c-453448cc0036",
+  "4d92f734-085d-41f2-ae4e-58d48e08b91d",
+  "e6cb56e2-2d89-49b4-b6d2-90edbff0eb72"
+]
 const images = [
   "1568387438_5d7bb16eae9b9",
   "1568387304_5d7bb0e84a55d",
   "1568446880_5d7c99a06e24c",
   "1568446258_5d7c973296445",
   "1568444087_5d7c8eb7086e2",
-  "1568444171_5d7c8f0b481e3"
+  "1568444171_5d7c8f0b481e3",
+
 ];
 
 const titles = [
@@ -46,18 +58,22 @@ const categories = [
 
 var content = "";
 function createVariants() {
-  const baseQuery = "INSERT INTO `vp__product` (`id`, `uuid`, `title`, `description`, `image_main`, `current_price`, `original_price`, `brand_uuid`, `category_uuid`, `origin`, `active_status`) VALUES"
-  for (let i = 0; i < 20; i++) {
+  const baseQuery = "INSERT INTO `vp__product_image` (`id`, `uuid`, `product_uuid`, `image_key`, `active_status`) VALUES"
+  for (key in products) {
     var uuid = generateUUID();
-    var title = i + '' + titles[Math.floor(Math.random() * titles.length)];
-    var image = images[Math.floor(Math.random() * images.length)];
-    var currentPrice = currentPrices[Math.floor(Math.random() * currentPrices.length)];
-    var originalPrice = originalPrices[Math.floor(Math.random() * originalPrices.length)];
-    var brand = brands[Math.floor(Math.random() * brands.length)];
-    var category = categories[Math.floor(Math.random() * categories.length)];
-    var valueQuery = `(NULL, '${uuid}', '${title}', 'Description', '${image}', '${currentPrice}', '${originalPrice}', '${brand}', '${category}', 'Úc', 'on');`;
-    query = baseQuery + valueQuery;
-    content = content + query + "\n";
+    var productUUID = products[key];
+    var imageKey1 = images[Math.floor(Math.random() * images.length)];
+    var imageKey2 = images[Math.floor(Math.random() * images.length)];
+    var imageKey3 = images[Math.floor(Math.random() * images.length)];
+    var valueQuery1 = `(NULL, '${uuid}', '${productUUID}', '${imageKey1}', 'on');`;
+    var valueQuery2 = `(NULL, '${uuid}', '${productUUID}', '${imageKey2}', 'on');`;
+    var valueQuery3 = `(NULL, '${uuid}', '${productUUID}', '${imageKey3}', 'on');`;
+    var query1 = baseQuery + valueQuery1;
+    var query2 = baseQuery + valueQuery2;
+    var query3 = baseQuery + valueQuery3;
+    content = content + query1 + "\n";
+    content = content + query2 + "\n";
+    content = content + query3 + "\n";
   }
 }
 function writeToOutput(fileOutput, content) {

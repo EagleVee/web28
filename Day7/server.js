@@ -23,22 +23,23 @@ app.post('/api/user', bodyParser.json(), function (request, response) {
   } else {
     Users.addOne(user, function (err, data) {
       if (err) console.log(err);
-      else response.end('SUCCESS');
+      else response.end(data);
     })
   }
 })
-app.put('/api/user', bodyParser.json(), function (request, response) {
+app.put('/api/user/:id', bodyParser.json(), function (request, response) {
   const user = request.body;
-  Users.updateOne(user, function (err, data) {
+  const id = request.params.id;
+  Users.updateOne(id, user, function (err, data) {
     if (err) console.log(err);
-    else response.end('SUCCESS');
+    else response.end(data);
   })
 })
-app.delete('/api/user', bodyParser.json(), function (request, response) {
-  const user = request.body;
-  Users.deleteOne(user, function (err, data) {
+app.delete('/api/user/:id', function (request, response) {
+  const id = request.params.id;
+  Users.deleteOne(id, function (err, data) {
     if (err) console.log(err);
-    else response.end('SUCCESS');
+    else response.end(data);
   })
 })
 var server = app.listen(port, function () {
