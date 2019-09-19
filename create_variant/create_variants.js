@@ -11,60 +11,60 @@ const products = [
 const volumns = [
   {
     "variant_key": "volumn",
-    "variant_value": "100",
-    "display_value": "100ml"
+    // "variant_value": "100",
+    "variant_value": "100ml"
   },
   {
     "variant_key": "volumn",
-    "variant_value": "300",
-    "display_value": "300ml"
+    // "variant_value": "300",
+    "variant_value": "300ml"
   },
   {
     "variant_key": "volumn",
-    "variant_value": "500",
-    "display_value": "500ml"
+    // "variant_value": "500",
+    "variant_value": "500ml"
   }
 ];
 
 const weights = [
   {
     "variant_key": "weight",
-    "variant_value": "500",
-    "display_value": "500gr"
+    // "variant_value": "500",
+    "variant_value": "500gr"
   },
   {
     "variant_key": "weight",
-    "variant_value": "700",
-    "display_value": "700gr"
+    // "variant_value": "700",
+    "variant_value": "700gr"
   },
   {
     "variant_key": "weight",
-    "variant_value": "900",
-    "display_value": "900gr"
+    // "variant_value": "900",
+    "variant_value": "900gr"
   }
 ];
 
 const flavours = [
   {
     "variant_key": "flavour",
-    "variant_value": "vani",
-    "display_value": "Vani"
+    // "variant_value": "vani",
+    "variant_value": "Vani"
   },
   {
     "variant_key": "flavour",
-    "variant_value": "chocolate",
-    "display_value": "Chocolate"
+    // "variant_value": "chocolate",
+    "variant_value": "Chocolate"
   },
   {
     "variant_key": "flavour",
-    "variant_value": "strawberry",
-    "display_value": "Dâu"
+    // "variant_value": "strawberry",
+    "variant_value": "Dâu"
   },
 ];
 
 const prices = ["150000", "200000", "300000", "100000", "500000"];
 var content = "";
-function createVariants () {
+function createVariants() {
   const baseQuery = "INSERT INTO `vp__product_variants` (`id`, `uuid`, `product_uuid`, `variant`, `price`, `image`, `active_status`) VALUES"
   for (productKey in products) {
     for (volumnKey in volumns) {
@@ -90,11 +90,14 @@ function writeToOutput(fileOutput, content) {
   outputWriteStream.write(content);
 }
 function generateUUID() {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
     var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
     return v.toString(16);
   });
 }
-console.log(generateUUID());
+// console.log(generateUUID());
+// console.log(generateUUID());
+// console.log(generateUUID());
+// console.log(generateUUID());
 createVariants();
 writeToOutput("query.txt", content);
