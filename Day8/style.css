@@ -1,0 +1,17 @@
+.container {
+  background-color: green;
+  padding: 15px;
+  font-size: 20px;
+}
+
+.image {
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    background-color: blue;
+    padding: 15px;
+    font-size: 20px;
+  }
+}

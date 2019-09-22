@@ -1,0 +1,54 @@
+.bg-orange {
+  background-color: #f44336;
+}
+
+.navbar {
+  padding: 0px;
+  box-shadow: 0px 0px 5px black;
+}
+.navbar-item {
+  color: black;
+}
+.navbar-item:hover {
+  background-color: rgba(192, 192, 192, 1) !important;
+  color: white
+}
+
+.nav-link {
+  padding: 0px;
+}
+
+.nav-item:hover {
+  background-color: white !important;
+}
+
+.nav-item:hover > .nav-link {
+  color: black !important;
+}
+.padding-button-large {
+  padding: 12px 24px;
+}
+
+.header-padding {
+  padding: 100px 0px;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.padding-content {
+  padding: 20px 5%;
+}
+
+.fit-contain {
+  object-fit: contain;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.bg-light-grey {
+  background-color: #f1f1f1!important
+}
