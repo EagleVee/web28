@@ -1,24 +1,34 @@
+const _ = require(["lodash"]);
 var nextPageToken = "";
-function getYoutubeResult(searchString) {
+function getYoutubeResult(input) {
+  showIndicator();
   $.ajax({
-    url: `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${searchString}&type=video&key=AIzaSyA9gQZ-oYomFypZN7PsupZJtOfQqA6Q3qw`,
+    url: `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${input}&type=video&key=AIzaSyA9gQZ-oYomFypZN7PsupZJtOfQqA6Q3qw`,
     method: "GET",
     success: function (data) {
       if (data) {
-        nextPageToken = data.nextPageToken;
-        $("#result-list").html("");
-        $.each(data.items, function (index, item) {
-          renderItem(item);
-        })
+        if (data.items.length > 0) {
+          nextPageToken = data.nextPageToken;
+          $("#result-list").html("");
+          $.each(data.items, function (index, item) {
+            renderItem(item);
+          })
+        } else {
+          renderNoResult();
+        }
       }
+      hideIndicator();
     },
     error: function (error) {
       console.log(error);
+      renderNoResult();
+      hideIndicator();
     }
   });
 }
 
 function getNextPageResult(nextPageToken) {
+  showIndicator();
   $.ajax({
     url: `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=chipu&type=video&key=AIzaSyA9gQZ-oYomFypZN7PsupZJtOfQqA6Q3qw&pageToken=${nextPageToken}`,
     method: "GET",
@@ -29,23 +39,23 @@ function getNextPageResult(nextPageToken) {
             renderItem(item);
           })
         } else {
-          var noResult = `<p class="text-center text-small text-secondary">
-            There's no more results.
-          </p>`
-          $("#result-list").append(noResult);
+          renderNoResult();
         }
+        hideIndicator();
       }
     },
     error: function (error) {
       console.log(error);
+      renderNoResult();
+      hideIndicator();
     }
   })
 }
 
 $(document).on('submit', '#search', function (event) {
   event.preventDefault();
-  var searchString = $("#keyword").val();
-  getYoutubeResult(searchString);
+  var input = $("#keyword").val();
+  getYoutubeResult(input);
 })
 
 function renderItem(item) {
@@ -67,6 +77,42 @@ function renderItem(item) {
 
 $(window).scroll(function () {
   if ($(window).scrollTop() + $(window).height() == $(document).height()) {
-    getNextPageResult(nextPageToken);
+    if (nextPageToken !== "") getNextPageResult(nextPageToken);
   }
 });
+
+function showIndicator() {
+  const indicator = `<div id="indicator" class="d-flex justify-content-center m-5">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>`
+  $("#result-list").append(indicator);
+}
+
+function hideIndicator() {
+  $("#indicator").remove();
+}
+
+$('#keyword').on('input', _.debounce(function (event) {
+  var input = $("#keyword").val();
+  if (input.length > 0) getYoutubeResult(input);
+}, 1000));
+
+// function debounce(func, timeOut) {
+//   let flag = true;
+//   if (flag) {
+//     func();
+//     flag = false;
+//     setTimeout(function () {
+//       flag = true;
+//     }, timeOut);
+//   }
+// }
+
+function renderNoResult() {
+  var noResult = `<p class="text-center text-small text-secondary">
+            There's no results.
+          </p>`
+  $("#result-list").append(noResult);
+}
