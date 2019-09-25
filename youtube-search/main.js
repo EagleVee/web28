@@ -1,6 +1,7 @@
-const _ = require(["lodash"]);
+// const _ = require(["lodash.js"]);
 var nextPageToken = "";
 function getYoutubeResult(input) {
+  $("#result-list").html("");
   showIndicator();
   $.ajax({
     url: `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${input}&type=video&key=AIzaSyA9gQZ-oYomFypZN7PsupZJtOfQqA6Q3qw`,
@@ -9,7 +10,6 @@ function getYoutubeResult(input) {
       if (data) {
         if (data.items.length > 0) {
           nextPageToken = data.nextPageToken;
-          $("#result-list").html("");
           $.each(data.items, function (index, item) {
             renderItem(item);
           })
@@ -52,7 +52,7 @@ function getNextPageResult(nextPageToken) {
   })
 }
 
-$(document).on('submit', '#search', function (event) {
+$(document).on("submit", "#search", function (event) {
   event.preventDefault();
   var input = $("#keyword").val();
   getYoutubeResult(input);
@@ -76,10 +76,18 @@ function renderItem(item) {
 }
 
 $(window).scroll(function () {
-  if ($(window).scrollTop() + $(window).height() == $(document).height()) {
-    if (nextPageToken !== "") getNextPageResult(nextPageToken);
-  }
+  onScrollToBottom();
+  window.addEventListener('scroll', onScrollToBottom)
 });
+
+function onScrollToBottom() {
+  if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+    if (nextPageToken !== "") {
+      getNextPageResult(nextPageToken);
+      window.removeEventListener('scroll', onScrollToBottom);
+    }
+  }
+}
 
 function showIndicator() {
   const indicator = `<div id="indicator" class="d-flex justify-content-center m-5">
@@ -94,21 +102,10 @@ function hideIndicator() {
   $("#indicator").remove();
 }
 
-$('#keyword').on('input', _.debounce(function (event) {
+$("#keyword").on("input", _.debounce(function (event) {
   var input = $("#keyword").val();
   if (input.length > 0) getYoutubeResult(input);
 }, 1000));
-
-// function debounce(func, timeOut) {
-//   let flag = true;
-//   if (flag) {
-//     func();
-//     flag = false;
-//     setTimeout(function () {
-//       flag = true;
-//     }, timeOut);
-//   }
-// }
 
 function renderNoResult() {
   var noResult = `<p class="text-center text-small text-secondary">
@@ -116,3 +113,4 @@ function renderNoResult() {
           </p>`
   $("#result-list").append(noResult);
 }
+

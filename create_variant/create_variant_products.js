@@ -66,10 +66,18 @@ const flavours = [
   },
 ];
 
+const instocks = [
+  "1234",
+  "125",
+  "107",
+  "99",
+  "92",
+  "7749"
+]
 const prices = ["150000", "200000", "300000", "100000", "500000"];
 var content = "";
 function createVariants() {
-  const baseQuery = "INSERT INTO `vp__product_variants` (`id`, `uuid`, `product_uuid`, `variant`, `price`, `image`, `active_status`) VALUES"
+  const baseQuery = "INSERT INTO `vp__product_variants` (`id`, `uuid`, `product_uuid`, `variant`, `price`, `image`, `instock`, `active_status`) VALUES"
   for (productKey in products) {
     for (volumnKey in volumns) {
       for (weightKey in weights) {
@@ -81,7 +89,8 @@ function createVariants() {
           variantArray.push(flavours[flavourKey]);
           const price = prices[Math.floor(Math.random() * prices.length)];
           var variantArrayJson = JSON.stringify(variantArray);
-          const valueQuery = `(NULL, '${uuid}', '${products[productKey]}', '${variantArrayJson}', '${price}', '1568387304_5d7bb0e84a55d', 'on');`;
+          var instock = instocks[Math.floor(Math.random() * instocks.length)];
+          const valueQuery = `(NULL, '${uuid}', '${products[productKey]}', '${variantArrayJson}', '${price}', '1568387304_5d7bb0e84a55d', '${instock}', 'on');`;
           query = baseQuery + valueQuery;
           content = content + query + "\n";
         }
