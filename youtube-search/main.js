@@ -30,7 +30,7 @@ function getYoutubeResult(input) {
 function getNextPageResult(nextPageToken) {
   showIndicator();
   $.ajax({
-    url: `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=chipu&type=video&key=AIzaSyA9gQZ-oYomFypZN7PsupZJtOfQqA6Q3qw&pageToken=${nextPageToken}`,
+    url: `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&type=video&key=AIzaSyA9gQZ-oYomFypZN7PsupZJtOfQqA6Q3qw&pageToken=${nextPageToken}`,
     method: "GET",
     success: function (data) {
       if (data) {
