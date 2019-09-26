@@ -28,6 +28,7 @@ function getYoutubeResult(input) {
 }
 
 function getNextPageResult(nextPageToken) {
+
   showIndicator();
   $.ajax({
     url: `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&type=video&key=AIzaSyA9gQZ-oYomFypZN7PsupZJtOfQqA6Q3qw&pageToken=${nextPageToken}`,
@@ -77,14 +78,12 @@ function renderItem(item) {
 
 $(window).scroll(function () {
   onScrollToBottom();
-  window.addEventListener('scroll', onScrollToBottom)
 });
 
 function onScrollToBottom() {
   if ($(window).scrollTop() + $(window).height() == $(document).height()) {
     if (nextPageToken !== "") {
       getNextPageResult(nextPageToken);
-      window.removeEventListener('scroll', onScrollToBottom);
     }
   }
 }

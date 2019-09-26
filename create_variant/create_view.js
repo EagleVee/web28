@@ -1,15 +1,15 @@
 const fs = require('fs');
 const products = [
-  "122ec6f4-76cf-44aa-bdf1-df7fd7b71a2b",
-  "222ec6f4-76cf-44aa-bdf1-df7fd7b71a2b",
-  "322ec6f4-76cf-44aa-bdf1-df7fd7b71a2b",
-  "422ec6f4-76cf-44aa-bdf1-df7fd7b71a2b",
-  "522ec6f4-76cf-44aa-bdf1-df7fd7b71a2b",
+  "4f6fd444-847e-44cc-90fb-aa8859d3a39b",
+  "1cda9002-3eff-4829-a3b3-799f14095079",
+  "8b1fb21b-4038-4eb1-abbd-8ca9823b61c6",
+  "9966bf5b-8fda-4786-95c2-0abe13c11864",
+  "e3e1a458-1860-467b-9eee-e7b33634ab55",
   "622ec6f4-76cf-44aa-bdf1-df7fd7b71a2b",
-  "40692043-0611-4da6-8d46-255d3b33ca06",
-  "8e7dd732-97bc-4bca-be5c-453448cc0036",
-  "4d92f734-085d-41f2-ae4e-58d48e08b91d",
-  "e6cb56e2-2d89-49b4-b6d2-90edbff0eb72"
+  "fc1c7d0a-8af5-4522-a5dd-5c954aa55dd7",
+  "dc8dea1d-5a9f-4ef9-a8f1-e49732cf3ec0",
+  "12b366cf-0def-4f87-af89-f332e5df594e",
+  "58d9c7bd-d96a-4e99-ac78-2bb09d6b4766"
 ];
 
 const customers = [
