@@ -2,9 +2,9 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const fs = require('fs');
-const Error = require('./error.js');
+const Error = require('./error.js.js');
 const port = 3000;
-const Users = require('./models/users.js');
+const Users = require('./models/users.js.js');
 
 app.get('/api/user', function (request, response) {
   Users.getList(function (err, data) {
