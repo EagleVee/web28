@@ -25,14 +25,9 @@ const create = async function(data) {
   const newDocument = new UserModel(data);
   return await newDocument.save();
 };
+
 const update = async function(id, data) {
-  return await UserModel.findByIdAndUpdate(
-    id,
-    {
-      $set: data
-    },
-    { new: true }
-  );
+  return await UserModel.findByIdAndUpdate(id, { $set: data }, { new: true });
 };
 
 const deleteById = async function(id) {
