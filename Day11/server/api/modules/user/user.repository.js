@@ -14,7 +14,7 @@ const UserSchema = mongoose.Schema({
 const UserModel = mongoose.model("User", UserSchema);
 
 const find = async function(query) {
-  return await UserModel.find(query);
+  return await UserModel.find(query).populate("books");
 };
 
 const findById = async function(id) {
