@@ -12,9 +12,23 @@ const UserSchema = mongoose.Schema({
 });
 
 const UserModel = mongoose.model("User", UserSchema);
-
 const find = async function(query) {
-  return await UserModel.find(query).populate("books");
+  if (query.limit && query.skip !== undefined) {
+    const limit = Number(query.limit);
+    const skip = Number(query.skip);
+    delete query.limit;
+    delete query.skip;
+    return await UserModel.find(query)
+      .populate("books")
+      .limit(limit)
+      .skip(skip);
+  } else {
+    return await UserModel.find(query).populate("books");
+  }
+};
+
+const count = async function(query) {
+  return await UserModel.count(query);
 };
 
 const findById = async function(id) {
@@ -36,6 +50,7 @@ const deleteById = async function(id) {
 
 module.exports = {
   find: find,
+  count: count,
   findById: findById,
   create: create,
   update: update,

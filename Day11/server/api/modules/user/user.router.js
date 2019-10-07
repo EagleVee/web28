@@ -5,9 +5,7 @@ const service = require("./user.service");
 router.get("/", async function(req, res) {
   try {
     const data = await service.find(req.query);
-    res.status(200).send({
-      data: data
-    });
+    res.status(200).send(data);
   } catch (err) {
     res.status(500).send({
       error: err.message
@@ -65,6 +63,18 @@ router.delete("/:id", async function(req, res) {
       error: err.message
     });
   }
+});
+
+router.post("/mass-create", async function(req, res) {
+  try {
+    for (let i = 0; i < 100; i++) {
+      const data = await service.create({
+        name: `User${i}`,
+        email: `nnavu${i}@gmail.com`
+      });
+    }
+    res.end("OK");
+  } catch (err) {}
 });
 
 module.exports = router;

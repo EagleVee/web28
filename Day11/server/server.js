@@ -12,6 +12,7 @@ app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 app.use("/api/book", bookRouter);
 app.use("/api/user", userRouter);
+app.use("/", express.static("client"));
 
 var server = app.listen(port, function() {
   console.log(`Server run at localhost:${port}`);
