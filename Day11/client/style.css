@@ -1,3 +1,11 @@
-.image {
-  width: 40px;
+.image-placeholder {
+  width: 100%;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex {
+  display: flex;
 }

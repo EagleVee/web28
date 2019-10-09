@@ -5,9 +5,7 @@ const service = require("./book.service");
 router.get("/", async function(req, res) {
   try {
     const data = await service.find(req.query);
-    res.status(200).send({
-      data: data
-    });
+    res.status(200).send(data);
   } catch (err) {
     res.status(500).send({
       error: err.message

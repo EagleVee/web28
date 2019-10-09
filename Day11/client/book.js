@@ -6,27 +6,23 @@ $(document).ready(function() {
 });
 
 function getUser(pageNumber) {
-  const skip = (pageNumber - 1) * NUMBER_OF_USER;
+  const skip = (pageNumber - 1) * NUMBER_OF_BOOK;
   currentPage = pageNumber;
-  $.ajax(`${ROOT_API}/user?skip=${skip}&limit=${NUMBER_OF_USER}`, {
+  $.ajax(`${ROOT_API}/book?skip=${skip}&limit=${NUMBER_OF_BOOK}`, {
     type: "GET",
     success: function(data) {
       if (data && data.data) {
-        for (user of data.data) {
-          let books = "";
-          for (book of user.books) {
-            books += book.title + "\n";
-          }
-          $("#user-list").append(`
+        for (book of data.data) {
+          $("#book-list").append(`
           <div class="col-12 mt-3 mb-3">
             <div class="row">
               <div class="col-4">
                 <img class="image-placeholder" src="http://www.pets4homes.co.uk/images/breeds/43/large/81f6538eb4101d364ac0588b10040f0e.jpg">
               </div>
               <div class="col-8">
-                <h3>${user.name}</h3>
-                <h4>${user.email}</h4>
-                <h4 class="text-danger">${books}</h4>
+                <h3>${book.title}</h3>
+                <h4>${book.author}</h4>
+                <h4 class="text-danger">${book.category}</h4>
               </div>
             </div>
           </div>
@@ -34,7 +30,7 @@ function getUser(pageNumber) {
         }
       }
       $("#pagination-list").html();
-      for (let i = 1; i <= Math.ceil(data.total / NUMBER_OF_USER); i++) {
+      for (let i = 1; i <= Math.ceil(data.total / NUMBER_OF_BOOK); i++) {
         $("#pagination-list").append(
           `<li class="page-item"><a class="page-link onclick="loadPage(${i})">${i}</a></li>`
         );

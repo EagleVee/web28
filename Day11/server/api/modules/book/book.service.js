@@ -1,7 +1,12 @@
 const repository = require("./book.repository");
 
 const find = async function(query) {
-  return await repository.find(query);
+  const data = await repository.find(query);
+  const total = await repository.count(query);
+  return {
+    data: data,
+    total: total
+  };
 };
 
 const findById = async function(id) {

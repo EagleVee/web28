@@ -10,7 +10,20 @@ const BookSchema = mongoose.Schema({
 const BookModel = mongoose.model("Book", BookSchema);
 
 const find = async function(query) {
+  if (query.limit && query.skip !== undefined) {
+    const limit = Number(query.limit);
+    const skip = Number(query.skip);
+    delete query.limit;
+    delete query.skip;
+    return await BookModel.find(query)
+      .limit(limit)
+      .skip(skip);
+  }
   return await BookModel.find(query);
+};
+
+const count = async function(query) {
+  return await BookModel.count(query);
 };
 
 const findById = async function(id) {
@@ -37,6 +50,7 @@ const deleteById = async function(id) {
 
 module.exports = {
   find: find,
+  count: count,
   findById: findById,
   create: create,
   update: update,
