@@ -10,6 +10,12 @@ async function login(data) {
   if (!existedUser) {
     throw new Error("CANNOT FIND USER WITH THIS EMAIL!");
   }
+
+  const result = await bcrypt.compare(data.password, existedUser.password);
+  if (result) {
+  } else {
+    throw new Error("WRONG PASSWORD!");
+  }
 }
 
 async function register(data) {
@@ -23,8 +29,11 @@ async function register(data) {
   }
 
   const newPassword = await bcrypt.hash(data.password, config.secret);
-  console.log("HASH", newPassword);
-  return newPassword;
+  return await userRepository.create({
+    name: data.name,
+    email: data.email,
+    password: newPassword
+  });
 }
 
 module.exports = {

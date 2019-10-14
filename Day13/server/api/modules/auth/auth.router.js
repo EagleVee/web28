@@ -13,4 +13,15 @@ router.post("/register", async function(req, res) {
   }
 });
 
+router.post("/login", async function(req, res) {
+  try {
+    const data = await service.login(req.body);
+    res.status(200).send(data);
+  } catch (err) {
+    res.status(500).send({
+      error: err.message
+    });
+  }
+});
+
 module.exports = router;

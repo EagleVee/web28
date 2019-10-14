@@ -8,7 +8,11 @@ const UserSchema = mongoose.Schema({
       ref: "Book"
     }
   ],
-  email: String
+  email: String,
+  password: {
+    type: String,
+    required: true
+  }
 });
 
 const UserModel = mongoose.model("User", UserSchema);
